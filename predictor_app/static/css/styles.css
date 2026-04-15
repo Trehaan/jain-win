@@ -1,0 +1,205 @@
+/* Base */
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto;
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    color: #e2e8f0;
+    min-height: 100vh;
+}
+
+/* Layout */
+.container {
+    max-width: 700px;
+    margin: 40px auto;
+    padding: 30px;
+}
+
+/* Title */
+h2 {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.subtitle {
+    text-align: center;
+    color: #cbd5e1;
+    font-size: 14px;
+    margin-bottom: 30px;
+}
+
+/* Form Group */
+.form-group {
+    position: relative;
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #cbd5e1;
+}
+
+/* Input (BIG textbox like you wanted) */
+textarea {
+    width: 100%;
+    max-width: 100%;
+    min-height: 120px;
+    max-height: 250px;
+    padding: 12px;
+    border-radius: 8px;
+    border: 2px solid #334155;
+    background: #020617;
+    color: #e2e8f0;
+    font-size: 14px;
+    font-family: inherit;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    overflow-x: hidden;
+    overflow-y: auto;
+    resize: vertical;
+    transition: border-color 0.2s;
+}
+
+textarea:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+/* Character Count */
+.char-count {
+    position: absolute;
+    bottom: 8px;
+    right: 12px;
+    font-size: 12px;
+    color: #64748b;
+}
+
+/* Button */
+button {
+    width: 100%;
+    margin-top: 15px;
+    padding: 14px 20px;
+    border: none;
+    border-radius: 8px;
+    background: #3b82f6;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+button:hover {
+    background: #2563eb;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+/* Result */
+.result {
+    margin-top: 30px;
+    padding: 0;
+    border-radius: 10px;
+    animation: slideIn 0.3s ease;
+}
+
+.result h3 {
+    margin: 0 0 15px 0;
+    font-size: 18px;
+    color: #e2e8f0;
+}
+
+.prediction-card {
+    padding: 18px;
+    border-radius: 8px;
+    background: #020617;
+    border: 2px solid #334155;
+    margin-bottom: 15px;
+    transition: all 0.2s;
+}
+
+.prediction-card.ai-generated {
+    border-color: #ef4444;
+    background: rgba(239, 68, 68, 0.05);
+}
+
+.prediction-card.authentic {
+    border-color: #10b981;
+    background: rgba(16, 185, 129, 0.05);
+}
+
+/* Labels */
+.result p {
+    margin: 8px 0;
+}
+
+.label {
+    margin: 0 0 5px 0;
+    font-size: 12px;
+    color: #94a3b8;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Prediction highlight */
+.pred {
+    font-size: 24px;
+    font-weight: 700;
+    margin: 0 0 15px 0;
+}
+
+.prediction-card.ai-generated .pred {
+    color: #ef4444;
+}
+
+.prediction-card.authentic .pred {
+    color: #10b981;
+}
+
+.confidence {
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0;
+    color: #3b82f6;
+}
+
+.result-note {
+    font-size: 13px;
+    color: #cbd5e1;
+    margin: 0;
+    padding: 12px;
+    background: #1e293b;
+    border-radius: 6px;
+}
+
+/* Animations */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .container {
+        margin: 20px auto;
+        padding: 20px;
+    }
+
+    h2 {
+        font-size: 24px;
+    }
+}

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fake Review Detector</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+
+<body>
+    <div class="container">
+        <h2>🔍 Fake Review Detector</h2>
+        <p class="subtitle">Paste a review below to check if it's likely AI-generated or fake</p>
+        
+        <form method='POST'>
+            {% csrf_token %}
+
+            <div class="form-group">
+                <label for="text">Review Text</label>
+                <textarea 
+                    id="text"
+                    name="text" 
+                    placeholder="Paste your review here..."
+                    required>{{ text|default_if_none:"" }}</textarea>
+                <span class="char-count"><span id="charCount">0</span>/500</span>
+            </div>
+
+            <button type="submit" class="btn-primary">Analyze Review</button>
+        </form>
+
+        {% if prob %}
+        <div class="result">
+            <h3>Results</h3>
+            <div class="prediction-card{% if pred == 'AI' %} ai-generated{% else %} authentic{% endif %}">
+                <p class="label">Prediction:</p>
+                <p class="pred">{{ pred }}</p>
+                <p class="label">Score:</p>
+                <p class="confidence">{{ prob|floatformat:1 }}</p>
+            </div>
+            <p class="result-note">
+                {% if pred == 'AI' %}
+                This review shows characteristics of AI-generated content.
+                {% else %}
+                This review appears to be written by a human.
+                {% endif %}
+            </p>
+        </div>
+        {% endif %}
+    </div>
+
+    <script>
+        const textarea = document.getElementById('text');
+        const charCount = document.getElementById('charCount');
+        
+        textarea.addEventListener('input', function() {
+            charCount.textContent = this.value.length;
+            if (this.value.length > 500) {
+                this.value = this.value.slice(0, 500);
+                charCount.textContent = 500;
+            }
+        });
+    </script>
+</body>
+</html>

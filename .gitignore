@@ -1,0 +1,4 @@
+venv/
+op_spam_v1.4/
+__pycache__/
+db.sqlite3
