@@ -1,6 +1,7 @@
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
+from ML.Data.data_processer import build_embedding_matrix
 
 class BCELearner(nn.Module):
     def __init__(self):
@@ -138,10 +139,14 @@ class BCELearner(nn.Module):
 
 
 class TextCNN(BCELearner):
-    def __init__(self, vocab_size, embed_dim, num_filters,dropout_rate):
+    def __init__(self, vocab, embed_dim, num_filters,dropout_rate):
         super().__init__()
         
-        self.embedding = nn.Embedding(vocab_size, embed_dim)
+        self.embedding_matrix = build_embedding_matrix(vocab,embed_dim)
+        self.embedding = nn.Embedding.from_pretrained(
+            torch.tensor(self.embedding_matrix, dtype=torch.float32),
+            freeze=False
+        )
         
         self.conv1 = nn.Conv1d(embed_dim, num_filters, kernel_size=3)
         self.conv2 = nn.Conv1d(embed_dim, num_filters, kernel_size=4)
@@ -175,11 +180,15 @@ import torch
 import torch.nn as nn
 
 class TextLSTM(BCELearner):
-    def __init__(self, vocab_size, embed_dim, hidden_size, num_layers, dropout_rate):
+    def __init__(self, vocab, embed_dim, hidden_size, num_layers, dropout_rate):
         super().__init__()
 
-        self.embedding = nn.Embedding(vocab_size, embed_dim, padding_idx=0)
-
+        self.embedding_matrix = build_embedding_matrix(vocab,embed_dim)
+        self.embedding = nn.Embedding.from_pretrained(
+            torch.tensor(self.embedding_matrix, dtype=torch.float32),
+            freeze=False
+        )
+        
         self.lstm = nn.LSTM(
             input_size=embed_dim,
             hidden_size=hidden_size,

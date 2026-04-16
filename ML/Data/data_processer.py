@@ -1,6 +1,8 @@
 import re
 from nltk.corpus import stopwords
 from collections import Counter
+import numpy as np
+import os
 
 stop_words = set(stopwords.words('english'))
 
@@ -37,5 +39,25 @@ def pad_sequence(sequence,max_padding):
     
     return sequence + [0]*(max_padding - len(sequence))
 
+def build_embedding_matrix(vocab,embed_dim):
+    glove_path = os.path.join("ML","Data","glove.6B.100d.txt")
 
+    glove_dict = {}
 
+    with open(glove_path, encoding="utf8") as f:
+        for line in f:
+            values = line.split()
+            word = values[0]
+            vector = np.asarray(values[1:], dtype="float32")
+            glove_dict[word] = vector
+
+    vocab_size = len(vocab)
+    embedding_matrix = np.zeros((vocab_size, embed_dim))
+
+    for word, idx in vocab.items():
+        if word in glove_dict:
+            embedding_matrix[idx] = glove_dict[word]
+        else:
+            embedding_matrix[idx] = np.random.normal(scale=0.6, size=(embed_dim,))
+
+    return embedding_matrix

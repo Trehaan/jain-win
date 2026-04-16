@@ -16,7 +16,7 @@ def index(request):
         cnn_dict = torch.load(os.path.join("ML","Models","saved_models","cnn_model.pth"),weights_only = True)
         cnn_config = cnn_dict["config"]
         vocab = cnn_dict["vocab"]
-        cnn_model = TextCNN(len(vocab),
+        cnn_model = TextCNN(vocab,
                             cnn_config["embed_dim"],
                             cnn_config["num_filters"],
                             cnn_config["dropout_rate"])

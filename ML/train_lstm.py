@@ -8,15 +8,15 @@ struct.build_vocab(min_freq=5,max_vocab=5000)
 struct.preprocess_train_data()
 
 lstm_config = {
-    "embed_dim": 32,
+    "embed_dim": 100,
     "hidden_size": 72,
     "num_layers": 1,
-    "dropout_rate": 0.25
+    "dropout_rate": 0.4
 }
 
 
 lstm_model = TextLSTM(
-    struct.get_vocab_size(),
+    struct.get_vocab(),
     lstm_config["embed_dim"],
     lstm_config["hidden_size"],
     lstm_config["num_layers"],
@@ -28,9 +28,9 @@ train_model(
     model=lstm_model,
     model_config=lstm_config,
     data_struct=struct,
-    lr=1e-5,
+    lr=5e-5,
     weight_decay=1e-3,
     epochs=2000,
     patience=35,
-    batch_size=256
+    batch_size=512
 )

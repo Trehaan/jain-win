@@ -6,7 +6,7 @@ import os
 
 lstm_dict = torch.load(os.path.join("ML","Models","saved_models","lstm_model.pth"),weights_only = True)
 lstm_config = lstm_dict["config"]
-lstm_model = TextLSTM(len(lstm_dict["vocab"]),
+lstm_model = TextLSTM(lstm_dict["vocab"],
                     lstm_config["embed_dim"],
                     lstm_config["hidden_size"],
                     lstm_config["num_layers"],

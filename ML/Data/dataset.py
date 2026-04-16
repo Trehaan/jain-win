@@ -46,8 +46,8 @@ class DataStruct:
         return train_test_split(data, labels, test_size=0.2, random_state=42)
 
     
-    def get_vocab_size(self):
-        return len(self.vocab)
+    def get_vocab(self):
+        return self.vocab
     
 
     def preprocess_train_data(self):
