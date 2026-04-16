@@ -24,6 +24,7 @@ class DataStruct:
 
     def build_vocab(self,min_freq,max_vocab):
         self.vocab = build_vocab(self.train_texts,min_freq,max_vocab)
+        
 
 
     def extract_data(self):

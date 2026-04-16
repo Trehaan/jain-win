@@ -171,14 +171,14 @@ button:active {
     color: #3b82f6;
 }
 
-.result-note {
+/* .result-note {
     font-size: 13px;
     color: #cbd5e1;
     margin: 0;
     padding: 12px;
     background: #1e293b;
     border-radius: 6px;
-}
+} */
 
 /* Animations */
 @keyframes slideIn {

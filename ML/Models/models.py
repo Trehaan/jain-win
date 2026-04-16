@@ -93,7 +93,7 @@ class BCELearner(nn.Module):
                 loss = criterion(outputs, labels)
                 running_loss += loss.item()
 
-                preds = (outputs >= 0.5).int()
+                preds = (outputs >= 0).int()
                 labels_int = labels.int()
 
                 # Accuracy

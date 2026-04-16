@@ -11,7 +11,7 @@ lstm_config = {
     "embed_dim": 100,
     "hidden_size": 72,
     "num_layers": 1,
-    "dropout_rate": 0.4
+    "dropout_rate": 0.3
 }
 
 
@@ -28,7 +28,7 @@ train_model(
     model=lstm_model,
     model_config=lstm_config,
     data_struct=struct,
-    lr=5e-5,
+    lr=1e-5,
     weight_decay=1e-3,
     epochs=2000,
     patience=35,
