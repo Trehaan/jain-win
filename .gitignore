@@ -2,4 +2,4 @@ venv/
 op_spam_v1.4/
 __pycache__/
 db.sqlite3
-glove.6b.100d
+glove.6b.100d.txt
